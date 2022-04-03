@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trust yourself</title>
+</head>
+<body>
+    <img src='/images/Capture d’écran (11).jpg'>
+    <p>return to <a href="/check/stage">/check/stage</a> in <span class='num'>3</span> seconds</p>
+    <script>
+        n=3;
+        setInterval(()=>{
+            n--;
+            if(n<0){
+                location.href='/check/stage'
+            }else{
+                document.querySelector(".num").innerHTML = n
+            }
+        },1000)
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+class Appointment{
+    constructor(){
+        this.storage = [];
+        this.count = 0;
+        this.limit = 7;
+    }
+    
+isEmpty = function () {
+    return this.count == 0;
+  }
+  
+resize = function (newLimit) {
+    var oldStorage = this.storage;
+  
+    this.storage = [];
+    this.count = 0;
+    this.limit = newLimit;
+    for (let i = 0; i < oldStorage.length; i++) {
+      var bucket = oldStorage[i];
+      if (bucket == null) continue;
+      for (let j = 0; j < bucket.length; j++) {
+        var tuple = bucket[j];
+        this.put(tuple[0], tuple[1]);
+      }
+    }
+  }
+
+isPrime = function (value) {
+    var sqrt = parseInt(Math.sqrt(value));
+  
+    for (let i = 2; i < sqrt; i++) {
+      if (value % i == 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  
+getPrime = function (num) {
+    while (!this.isPrime(num)) {
+      num++;
+    }
+    return num;
+  }
+
+    hashFunc = function (str, size) {
+        var hashCode = 0;
+      
+        for (var i = 0; i < str.length; i++) {
+          hashCode = 37 * hashCode + str.charCodeAt(i);
+        }
+        var index = hashCode % size;
+        return index;
+      }
+
+
+    addAttendee(name,email){
+        var index = this.hashFunc(email, this.limit);
+        var bucket = this.storage[index];
+      
+        if (bucket == null) {
+          bucket = [];
+          this.storage[index] = bucket;
+        }
+      
+        for (let i = 0; i < bucket.length; i++) {
+          var tuple = bucket[i];
+          if (tuple[0] == email) {
+            tuple[1] = name;
+            return;
+          }
+        }
+        bucket.push([email, name]);
+        this.count++;
+      
+        // 判断是否需要扩容
+        if (this.count > this.limit * 0.75) {
+          this.resize(this.getPrime(this.limit * 2));
+        }
+    }
+
+    removeAttendee(email){
+        var index = this.hashFunc(email, this.value);
+        var bucket = this.storage[index];
+        if (bucket == null) {
+          return null;
+        }
+      
+        for (let i = 0; i < bucket.length; i++) {
+          var tuple = bucket[i];
+          if (tuple[0] == email) {
+            bucket.splice(i, 1);
+            this.count--;
+            return tuple[1];
+          }
+        }
+        if (this.limit > 7 && this.count < this.limit * 0.25) {
+          this.resize(this.getPrime(Math.floor(this.limit / 2)));
+        }
+        return null;
+    }
+}

@@ -1,0 +1,45 @@
+
+
+.inBox{
+  border: solid;
+  padding: 0 20px;
+  width: 400px;
+}
+.inBox div{
+  margin: 10px;
+}
+.inBox div:last-child input{
+  margin: 5px;
+}
+.inBox div:last-child form{
+  margin: 5px;
+}
+
+.inBox div:nth-child(3) textarea{
+  height: 60px;
+  width: 200px;
+}
+
+.inBox div:nth-child(4) textarea{
+  height: 60px;
+  width: 200px;
+}
+.inBox .update input{
+  height: 20px;
+  width: 20px;
+}
+.list {
+  border: solid; 
+  border-color: rgb(139, 139, 236);
+}
+.allstage {
+  margin: 5px;
+}
+
+.stageIn_cp {
+  font-weight: 700;
+}
+
+.cp {
+  font-weight: 700;
+}

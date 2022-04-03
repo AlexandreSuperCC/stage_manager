@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <!-- <style>body{text-align:center}</style> -->
+</head>
+<body>
+    <center><h1>The Stage of 2021 Autumn</h1></center>
+    <!-- <h2><button onclick="window.location.href='/input'">input new stage</button></h2> -->
+    <center><div class="inBox">
+        <form action="/check/stage/input" method="post">
+        <div class="stageIn_cp">
+            entreprise  <input type="text" name="entreprise">
+        </div>
+        <div class="stageIn">
+            emploi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="emploi">
+        </div>
+        <div class="stageIn">
+            competence&nbsp;<textarea type="text" name="competence"></textarea>
+        </div>
+        <div class="stageIn">
+            information&nbsp;<textarea type="text" name="information"></textarea>
+        </div>
+        <div class="stageIn">
+            ville&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="ville">
+        </div>
+        <div class="stageIn">
+            lien&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="lien">
+        </div>
+        <div>
+        <button>Imput into database</button>
+        </div>
+        </form>
+        <form action="/check/stage/update" method="get">
+            <div class="update">The number of stage&nbsp;<input type="text" name="num">&nbsp;<button>update</button></div>
+        </form>
+        <div>
+            <input type="button" name="fresh" value="reload" onclick="reload()">
+            <form action="/check/logout" method="get">
+                <button>logout</button>
+            </form>
+        </div>
+    </div></center>
+    <div class="allstage">
+        <%for(let i=0; i<stage.length; i++){%>
+            <div class="list"><ul>
+                <li><%=stage[i].id%></li>
+                <span class="cp"><li><%=stage[i].entreprise%></li></span>
+                <li><%=stage[i].emploi%></li>
+                <li><%=stage[i].competence%></li>
+                <li><%=stage[i].information%></li>
+                <li><%=stage[i].ville%></li>
+                <li><%=stage[i].date%></li>
+                <li><%=stage[i].status%></li>
+                <li><%=stage[i].lien%> <input type="button" name="gotoURL" value="Description" onclick="gotoURL(this)"> 
+            </ul></div>
+        <%}%>
+    </div>
+    <script type="text/javascript">
+        function reload(){
+            window.location.reload();
+        }
+        function gotoURL(obj){
+            window.open(obj.parentNode.innerText)
+        }
+    </script>
+</body>
+</html>
